@@ -1,0 +1,9 @@
+playsound
+openai==1.35.14
+openai-whisper
+pyaudio
+wave
+numpy
+tqdm
+pinecone
+nltk
