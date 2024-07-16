@@ -1,6 +1,7 @@
-# Memoro - Your Memory Assistant
+# Memoro II - Your Memory Assistant Redefined
 
-Memoro is a powerful memory assistant designed to listen to conversations, transcribe them, and provide contextual answers based on previously stored data. Utilizing OpenAI's GPT-3.5-turbo model and Pinecone's vector database, Memoro can retrieve relevant information and assist users by answering queries accurately.
+Memoro II is the brainchild of Memoro, a powerful memory assistant designed to listen to conversations, transcribe them, and provide contextual answers based on previously stored data. 
+Memoro II is being developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) at Prince Sultan University (PSU) with the aim of furthering the efforts of Memoro. Utilizing OpenAI's GPT-3.5-turbo model and Pinecone's vector database, Memoro II can retrieve relevant information and assist users by answering queries accurately.
 
 ## Features
 
@@ -115,7 +116,7 @@ list_audio_devices()
 
 3. **Query the assistant:**
 
-   Run the next cell to prompt Memoro
+   Run the next cell to prompt Memoro II
 
 ## Code Overview
 
