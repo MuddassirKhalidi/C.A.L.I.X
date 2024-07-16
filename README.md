@@ -38,7 +38,8 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
 
       `nano .env`
    4. Edit the `.env` File:
-      ```OPENAI_API_KEY=your-openai-api-key
+      ```
+      OPENAI_API_KEY=your-openai-api-key
       PINECONE_API_KEY=your-pinecone-api-key
       ```
    5. Save and Exit:
