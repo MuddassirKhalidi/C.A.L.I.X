@@ -21,7 +21,8 @@ Memoro is a powerful memory assistant designed to listen to conversations, trans
 
 1. **Clone the repository:**
 
-   ```git clone https://github.com/MuddassirKhalidi/MEMORO---II.git
+   ```
+   git clone https://github.com/MuddassirKhalidi/MEMORO---II.git
    cd MEMORO---II
    ```
 
