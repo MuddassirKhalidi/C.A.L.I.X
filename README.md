@@ -29,7 +29,7 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
 
 2. **Install dependencies:**
 
-   `pip install -r requirements.txt`
+   `pip install -U -r requirements.txt `
 
 3. **Set up environment variables:**
 
