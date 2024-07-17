@@ -59,7 +59,42 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
    !pip install pinecone
    !pip install nltk
    ```
-2. **Importing Libraries and Downloading NLTK data:**
+
+2. **`FFmpeg` Installation**
+
+#### On Windows:
+
+##### Download
+Go to the FFmpeg Official Website and download the latest build for Windows.
+
+##### Extract
+Extract the downloaded ZIP file to a directory, for example, C:\FFmpeg.
+
+##### Environment Variable:
+- Right-click on 'This PC' or 'Computer' on your desktop or File Explorer, and select 'Properties'.
+
+- Click on 'Advanced system settings' and then 'Environment Variables'.
+
+- Under 'System Variables', find and select 'Path', then click 'Edit'.
+
+- Click 'New' and add the path to your FFmpeg bin directory, e.g., C:\FFmpeg\bin.
+
+- Click 'OK' to close all dialog boxes.
+
+#### On macOS:
+
+You can install `ffmpeg` using Homebrew:
+
+`brew install ffmpeg`
+
+#### On Linux:
+For Ubuntu and other Debian-based distributions, you can install ffmpeg from the apt repository:
+
+`sudo apt update`
+
+`sudo apt install ffmpeg`
+
+3. **Importing Libraries and Downloading NLTK data:**
    ```import os
    import openai
    from openai import OpenAI
@@ -77,12 +112,12 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
    nltk.download('punkt')
    from pinecone import Pinecone
     ```
-3. **Load environment variables from .env file**
+4. **Load environment variables from .env file**
 ```
 load_dotenv(dotenv_path=os.path.join(os.getcwd(), '.env'))
 ```
 
-4. **Selecting Micrphone**
+5. **Selecting Micrphone**
 
 ### Microphone Device Selection
 
