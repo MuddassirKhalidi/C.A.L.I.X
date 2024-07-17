@@ -1,0 +1,55 @@
+Hey team, thanks for jumping on this call again.
+
+No problem, John. How’s it going?
+
+Pretty good, Emma. How about you, Matt?
+
+I’m doing well. Ready to tackle the day. What’s on the agenda today, John?
+
+I wanted to check in on a few things from yesterday. Emma, did you get a chance to look over the specs Matt sent?
+
+Yes, I did. Everything looks good. I’ve started drafting some initial designs. I’ll send them over later today for feedback.
+
+That’s great to hear. Matt, how’s your team doing with the setup for the beta environment?
+
+We’re making good progress. We should have it ready by the end of the week. I’ll let you know if we run into any issues.
+
+Perfect. Emma, do you need anything else to keep moving forward?
+
+Actually, I had a question about the timeline you shared. Are we still aiming to have a prototype ready in two weeks?
+
+Yes, that’s the goal. Do you think that’s feasible?
+
+I think so. As long as we stay on track and get timely feedback, we should be able to meet that deadline.
+
+I agree. Matt, how’s your team’s workload? Are you confident we can hit that two-week mark?
+
+We’re good. We’ve allocated enough resources to this project, so barring any unforeseen issues, we should be fine.
+
+Awesome. I also wanted to discuss the user testing phase again. Emma, have you started thinking about the beta tester recruitment?
+
+Yes, I’ve drafted an email to our existing customer base. I’ll send it out tomorrow. I’m aiming to get about 20 testers initially.
+
+That sounds like a solid plan. Matt, anything else we need to consider for the beta environment?
+
+Just one thing. We should probably set up a feedback loop so that any issues reported by the beta testers get to us quickly. I’ll work on setting that up.
+
+Good idea. Emma, can you coordinate with Matt on that?
+
+Of course. We’ll make sure everything’s in place before we go live.
+
+Great. Is there anything else we need to cover today?
+
+I think we’re good. Just a reminder, I’ll be sending out the initial designs later today for your feedback.
+
+And I’ll update you both once the beta environment is ready.
+
+Sounds like we’re all set. Thanks for the updates, everyone. Let’s keep this momentum going.
+
+Absolutely. Thanks for the coordination, John.
+
+No problem. Talk to you both later.
+
+Bye, John. Bye, Matt.
+
+Talk to you later, John. Bye, Emma.
