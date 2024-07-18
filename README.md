@@ -123,21 +123,52 @@ load_dotenv(dotenv_path=os.path.join(os.getcwd(), '.env'))
 
 #### The `PyAudio` library requires you to choose a device with which you want to input speech. 
 
-#### The function `getAudio()` has an argument `device_name`. Before running the `main` cell, change the 
-
-#### default argument from `MacBook Pro Microphone` to the the device you want to use. 
-
+#### Use the cell below to decide on which audio device you will use for your microphone.
 
 ### RUN THIS CELL BEFORE THE MAIN CODE CELL
 ```
 def list_audio_devices():
+    """
+    Lists all available audio input devices.
+
+    Returns:
+    - list: A list of tuples containing device index, name, max input channels, and default sample rate.
+    """
     p = pyaudio.PyAudio()
+    devices = []
     for i in range(p.get_device_count()):
         device_info = p.get_device_info_by_index(i)
-        print(device_info['name'])
+        devices.append((i, device_info['name']))
     p.terminate()
+    return devices
+def get_device_index_by_name(name): 
+    """
+    Finds the index of an audio device by its name.
 
-list_audio_devices()
+    Args:
+    - name (str): The name of the device.
+
+    Returns:
+    - int: The index of the device.
+    
+    Note: This is a helper function which will be used in getAudio().
+    """
+    devices = list_audio_devices()
+    for index, device_name in devices:
+        if name.lower() in device_name.lower():
+            return index
+    return None
+
+device_list = list_audio_devices()
+print(f'Index | Device')
+devices = []
+for index, name in device_list:
+    devices.append(name)
+    print(f'{index}     |  {name}')
+    
+device = input('Choose a device from the list above by name: ')
+while device not in devices:
+    device = input('Choose a valid device: ')
 ```
 
 ### Recording and Processing Audio
