@@ -4,6 +4,5 @@ openai-whisper
 pyaudio
 wave
 numpy
-tqdm
-pinecone
-nltk
+transformers
+tiktoken
