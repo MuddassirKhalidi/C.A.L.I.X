@@ -1,0 +1,19 @@
+ What is especially ingredient in the brownies?
+
+Timestamp: 2024-07-21 09:29:43.169980
+Question:  What is especially ingredient in the brownies? What am I celebrating this weekend?
+
+Timestamp: 2024-07-21 09:30:13.766882
+Question:  What am I celebrating this weekend? What position was here? I promoted to.
+
+Timestamp: 2024-07-21 09:30:41.828544
+Question:  What position was here? I promoted to. What position was Sarah promoted to?
+
+Timestamp: 2024-07-21 09:31:05.574429
+Question:  What position was Sarah promoted to? What meetings have I had with Emma and John?
+
+Timestamp: 2024-07-21 09:31:37.342953
+Question:  What meetings have I had with Emma and John? Have I had any meetings with Emma and John last week?
+
+Timestamp: 2024-07-21 09:33:00.098815
+Question:  Have I had any meetings with Emma and John last week?
