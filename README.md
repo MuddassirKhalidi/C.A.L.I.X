@@ -105,7 +105,6 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 
 ## Acknowledgements
 
-- [OpenAI](https://www.openai.com) for providing the powerful GPT-3.5-turbo and Whisper models.
-- [Pinecone](https://www.pinecone.io) for the vector database services.
+- [OpenAI](https://www.openai.com) for providing the powerful GPT-4o-mini and Whisper models.
 - [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/) for the audio handling capabilities.
 - [playsound](https://github.com/TaylorSMarks/playsound) for audio playback functionality.
