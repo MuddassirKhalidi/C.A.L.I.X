@@ -179,32 +179,21 @@ def speech_to_text():
     Returns:
     - str: The transcribed text.
     """
-    audio = getAudio()
+    getAudio()
+    audio_file = os.path.join(os.getcwd(), 'audios', 'recorded_speech.wav')
 
     # Suppress the FP16 warning
     warnings.filterwarnings("ignore", category=UserWarning, message="FP16 is not supported on CPU; using FP32 instead")
 
-    try:
-        # Load the Whisper model
-        print('Loading whisper model...')
-        model = whisper.load_model('tiny')
-        print('Whisper model loaded successfully.')
-    except Exception as e:
-        print(f"Failed to load Whisper model: {e}")
-        return ""
-    '''
-    Choose among tiny, base, small, medium, large models
-    The higher the model, higher the accuracy. But more accuracy means 
-    it will take a lot longer to transcribe the audio.
-    '''
-
     print('Processing speech...')
-    # Transcribe the audio file
-    result = model.transcribe(audio)
-    print('Transcribed!')
-    text = result['text']
-    print(text)
-    return text
+    audio = open(audio_file, "rb")
+    transcription = openai.audio.transcriptions.create(
+    model="whisper-1", 
+    file=audio,
+    response_format="text"
+    )
+    print(transcription)
+    return transcription
 
 def text_to_speech(text):
     """
@@ -235,7 +224,7 @@ def write_to_file(text):
     """
     delimiter = '-'*20
     input_text = f'{delimiter}\nTimestamp: {datetime.now()}\n{text}\n{delimiter}'
-    with open('test.txt', 'a') as file:
+    with open('context.txt', 'a') as file:
         file.write(input_text)
     return 
 
@@ -247,7 +236,7 @@ def embed_text(text):
     return response.data[0].embedding
 
 def load_vector_store():
-    with open('test.txt', 'r') as file:
+    with open('context.txt', 'r') as file:
         content = file.read()
     
     # Split content into smaller chunks if necessary
@@ -269,7 +258,7 @@ def update_vector_store(new_text):
         index.add(np.array([embedding_np]))
         embedding_metadata.append({'id': f'doc-{len(embedding_metadata)}', 'text': chunk})
 
-def query_vector_store(query, top_k=10):
+def query_vector_store(query, top_k=50):
     query_embedding = embed_text(query)
     query_embedding_np = np.array([query_embedding]).astype('float32')
     distances, indices = index.search(query_embedding_np, top_k)
@@ -278,6 +267,7 @@ def query_vector_store(query, top_k=10):
 def generate_response(query):
     matches = query_vector_store(query)
     context = " ".join([match['text'] for match in matches])
+    print(context)
     response = openai.chat.completions.create(
             model='gpt-4o-mini',
             messages=[
@@ -308,30 +298,15 @@ def intro():
     file_path = os.path.join(os.getcwd(), 'audios','intro_prompt_voice.mp3')
     play_audio(file_path)
 
-intro()
 print('Loading vector store..')
 load_vector_store()
 print('Booted')
+intro()
 while True:
-    
     try:
         query = get_query()
         update_vector_store(query)
         generate_response(query)
     except KeyboardInterrupt:
         break
-
-# while True:
-    
-#     try:
-#         choice = int(input('Enter 1 for listen() and 2 for get_query(): '))
-#         if choice == 1:
-#             conversation = listen()
-#             update_vector_store(conversation)
-#         else:
-#             query = get_query()
-#             update_vector_store(query)
-#     except KeyboardInterrupt:
-#         break
-
 
