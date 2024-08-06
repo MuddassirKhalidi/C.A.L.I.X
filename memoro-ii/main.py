@@ -1,7 +1,8 @@
 print('Booting...')
 import os
 import openai
-from openai import OpenAI
+import faiss
+import numpy as np
 from dotenv import load_dotenv
 import sounddevice as sd
 import soundfile as sf
@@ -11,16 +12,15 @@ import numpy as np
 import whisper
 import warnings
 from datetime import datetime
-import tiktoken
-from transformers import pipeline
-
+# import tiktoken
+# from transformers import pipeline
 
 # Load environment variables from .env file
 load_dotenv(dotenv_path=os.path.join(os.getcwd(), '.env'))
-classifier = pipeline("sentiment-analysis", model="distilbert/distilbert-base-uncased-finetuned-sst-2-english")
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-tokenizer = tiktoken.get_encoding('cl100k_base')
-print('Booted!')
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+dimension = 1536  # Dimension of the OpenAI embeddings
+index = faiss.IndexFlatL2(dimension)
+embedding_metadata = []
 
 def list_audio_devices():
     """
@@ -64,71 +64,6 @@ for i, name in device_list:
 device = input('Choose a microphone device from the list: ')
 while device not in devices:
     device = input('Choose a valid device: ')
-
-
-def get_OPENAI_API():
-    """
-    Loads the OpenAI API key from the environment variables.
-
-    Returns:
-    - str: The OpenAI API key.
-    """
-    openai.api_key = os.getenv('OPENAI_API_KEY')
-    if not openai.api_key:
-        raise ValueError("OpenAI API key is not set. Please set the 'OPENAI_API_KEY' environment variable in your .env file.")
-    return openai.api_key
-
-def is_positive(text, classifier):
-    # # Preprocess text if necessary
-    # processed_text = text  # Assuming no specific preprocessing is required
-
-    # # Use Transformers pipeline for sentiment analysis
-    # result = classifier(processed_text)
-
-    # # Extract the sentiment label from the result
-    # sentiment_label = result[0]['label']
-    # if sentiment_label == 'NEGATIVE':
-    #     return False
-    # else:
-    #     return True
-    uncertain_phrases = [
-    "I'm not sure",
-    "I don't know",
-    "I can't find",
-    "I don't have enough information",
-    "This may not be correct",
-    "Sorry, I don't understand",
-    "I'm unable to answer that",
-    "I don't have the answer",
-    "I don't have that information",
-    "I couldn't find an answer",
-    "I couldn't find what you're looking for",
-    "I couldn't find the information you need",
-    "I couldn't locate an answer",
-    "I'm sorry, but I don't have an answer for that",
-    "Unfortunately, I don't have the answer",
-    "That's outside my knowledge base",
-    "I don't have enough data to answer that",
-    "I'm not equipped to answer that",
-    "I can't provide an answer to that",
-    "I'm not sure how to answer that",
-    "I don't have the answer right now",
-    "That's beyond my current capabilities",
-    "I couldn't locate the answer",
-    "I don't have access to that information",
-    "I'm afraid I don't know",
-    "I wish I could help, but I don't know",
-    "I don't have an answer for you",
-    "I'm still learning, and I don't have that answer",
-    "I apologize, but I don't know the answer",
-    "That's a great question, but I don't know",
-    "I'm unable"
-]
-    for phrase in uncertain_phrases:
-        if phrase in text:
-            return False
-    return True
-    
     
 def getAudio(device_name=device, chunk_size=1024, 
              format=pyaudio.paInt16, channels=1, rate=16000, silence_threshold=1000, silence_duration=5):
@@ -236,8 +171,6 @@ def play_audio(file_path):
     # Play the sound file
     sd.play(data, fs)
     sd.wait()  # Wait until file is done playing
-
-    
     
 def speech_to_text():
     """
@@ -251,8 +184,14 @@ def speech_to_text():
     # Suppress the FP16 warning
     warnings.filterwarnings("ignore", category=UserWarning, message="FP16 is not supported on CPU; using FP32 instead")
 
-    # Load the Whisper model
-    model = whisper.load_model("base")  
+    try:
+        # Load the Whisper model
+        print('Loading whisper model...')
+        model = whisper.load_model('tiny')
+        print('Whisper model loaded successfully.')
+    except Exception as e:
+        print(f"Failed to load Whisper model: {e}")
+        return ""
     '''
     Choose among tiny, base, small, medium, large models
     The higher the model, higher the accuracy. But more accuracy means 
@@ -294,121 +233,105 @@ def write_to_file(text):
     Returns:
     - str: The file path.
     """
-    file_path = os.path.join(os.getcwd(), 'buffer', 'short_term_buffer.txt')
-    with open(file_path, 'a') as file:
-        file.write(text)
-        
+    delimiter = '-'*20
+    input_text = f'{delimiter}\nTimestamp: {datetime.now()}\n{text}\n{delimiter}'
+    with open('test.txt', 'a') as file:
+        file.write(input_text)
     return 
 
-def read_from_file(file_path):
-    """
-    Reads text from a file.
+def embed_text(text):
+    response = openai.embeddings.create(
+        input=text, 
+        model="text-embedding-ada-002"
+    )
+    return response.data[0].embedding
 
-    Args:
-    - file_path (str): The path of the file.
+def load_vector_store():
+    with open('test.txt', 'r') as file:
+        content = file.read()
+    
+    # Split content into smaller chunks if necessary
+    chunks = content.split('-'*20)  # Split by lines for simplicity; can use more sophisticated chunking
+    
+    for i, chunk in enumerate(chunks):
+        embedding = embed_text(chunk)
+        embedding_np = np.array(embedding).astype('float32')
+        index.add(np.array([embedding_np]))
+        embedding_metadata.append({'id': f'doc-{i}', 'text': chunk})
 
-    Returns:
-    - str: The read text.
-    """
-    with open(file_path, 'r', encoding='utf-8') as file:
-        text = file.read()
-    return text
+def update_vector_store(new_text):
+    # Split new text into smaller chunks if necessary
+    chunks = new_text.split('-'*20)  # Split by lines for simplicity; can use more sophisticated chunking
+    
+    for i, chunk in enumerate(chunks):
+        embedding = embed_text(chunk)
+        embedding_np = np.array(embedding).astype('float32')
+        index.add(np.array([embedding_np]))
+        embedding_metadata.append({'id': f'doc-{len(embedding_metadata)}', 'text': chunk})
 
-def get_context():
-    text = speech_to_text()
-    context = f'\n\nTimestamp: {str(datetime.now())}\nConversation:\n{text}'
-    write_to_file(context)
+def query_vector_store(query, top_k=10):
+    query_embedding = embed_text(query)
+    query_embedding_np = np.array([query_embedding]).astype('float32')
+    distances, indices = index.search(query_embedding_np, top_k)
+    return [embedding_metadata[idx] for idx in indices[0]]
 
-def get_prompt():
-    query = speech_to_text()
-    prompt = f'\n\nTimestamp: {str(datetime.now())}\nQuestion: {query}'
-    write_to_file(prompt)
-    short_buffer = os.path.join(os.getcwd(), 'buffer', 'short_term_buffer.txt')
-    long_buffer = os.path.join(os.getcwd(), 'buffer', 'long_term_buffer.txt')
-    for file in [short_buffer, long_buffer]:
-        context = read_from_file(file)
-        response = openai.chat.completions.create(
+def generate_response(query):
+    matches = query_vector_store(query)
+    context = " ".join([match['text'] for match in matches])
+    response = openai.chat.completions.create(
             model='gpt-4o-mini',
             messages=[
-                {"role": "system", "content": "Your name is Memoro and you are a memory assistant listening to my conversations. You are given context with timestamps for the different conversations I have had. You will respond to queries from a short term buffer (this stores recent and immediate conversations) and a long term buffer (this stores past conversations). Answer the question using the provided context. If the query is something which requires you to search both buffers, or the long term buffer give a negative response. After you answer the question, ask for a follow up question."},
+                {"role": "system", "content": "Your name is Memoro and you are a memory assistant listening to my conversations."},
                 {"role": "user", "content": context},
-                {"role": "user", "content": prompt}
-
+                {"role": "user", "content": query}
             ]
         )
-        text = response.choices[0].message.content
-        if is_positive(text, classifier):
-            break
-        text_to_speech('Searching long term buffer...')
-            
-#     response = text + '\nIs there anything else I can help you with?'
-    text_to_speech(text)
-    response = f'\nAnswer: {text}\n' + '-'*10
-    write_to_file(response)
-    print(text)
-
-def buffer_exceeded():
-    short_buffer = os.path.join(os.getcwd(), 'buffer', 'short_term_buffer.txt')
-    text = read_from_file(short_buffer)
-    # Define the tokenizer for GPT-4o-mini using cl100k_base encoding
-    tokenizer = tiktoken.get_encoding('cl100k_base')
-
-    # Encode the context and count the tokens
-    tokens = tokenizer.encode(text)
-    num_tokens = len(tokens)
-    if num_tokens > 2000:
-        return True
-    else:
-        return False
+    answer = response.choices[0].message.content
+    write_to_file(answer)
+    print(answer)
+    text_to_speech(answer)  
     
-def move_to_long_term_buffer():
-    # Read the entire content of the short term buffer file
-    short_term_buffer = os.path.join(os.getcwd(), 'buffer', 'short_term_buffer.txt')
-    long_term_buffer = os.path.join(os.getcwd(), 'buffer', 'long_term_buffer.txt')
-    with open(short_term_buffer, 'r', encoding='utf-8') as file:
-        text = file.read()
 
-    # Tokenize the text
-    tokens = tokenizer.encode(text)
+def get_query():
+    query = speech_to_text()
+    # query = input('Enter your query: ')
+    print('Speech to text done')
+    write_to_file(query)
+    return query
 
-    # Split the tokens into two parts
-    first_n_tokens = tokens[:2000]
-    remaining_tokens = tokens[2000:]
+def listen():
+    speech = speech_to_text()
+    write_to_file(speech)
+    return speech
 
-    # Decode the first 2000 tokens and remaining tokens back to text
-    first_n_text = tokenizer.decode(first_n_tokens)
-    remaining_text = tokenizer.decode(remaining_tokens)
-
-    # Write the first n tokens to the new file
-    with open(long_term_buffer, 'a', encoding='utf-8') as file:
-        file.write(first_n_text)
-
-    # Update the original file with the remaining tokens
-    with open(short_term_buffer, 'w', encoding='utf-8') as file:
-        file.write(remaining_text)
-        
 def intro():
     file_path = os.path.join(os.getcwd(), 'audios','intro_prompt_voice.mp3')
     play_audio(file_path)
 
-# intro()
-
+intro()
+print('Loading vector store..')
+load_vector_store()
+print('Booted')
 while True:
-    print('Entered loop')
-    if buffer_exceeded():
-        move_to_long_term_buffer()
     
     try:
-        choice = input('Enter 1 to record and 2 to retrieve memories: ')
-        while choice not in ['1','2']:
-            choice = input('Enter a valid choice [1,2]: ')
-        if choice == '1':
-            get_context()
-        else:
-            get_prompt()
-        print('-'*50)
-        print('Interrupt the kernel to end the program')
+        query = get_query()
+        update_vector_store(query)
+        generate_response(query)
     except KeyboardInterrupt:
-        print("Thank you!")
         break
-print('Exited loop')
+
+# while True:
+    
+#     try:
+#         choice = int(input('Enter 1 for listen() and 2 for get_query(): '))
+#         if choice == 1:
+#             conversation = listen()
+#             update_vector_store(conversation)
+#         else:
+#             query = get_query()
+#             update_vector_store(query)
+#     except KeyboardInterrupt:
+#         break
+
+

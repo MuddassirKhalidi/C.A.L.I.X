@@ -109,7 +109,7 @@ For sure. Anyway, I should probably get back to work. See you at five?
 Yeah, see you then. Can’t wait!
 
 Me neither. See you later!
-
+--------------------
 Timestamp: 2024-07-14 11:21:23.903692
 Conversation:
 Hey, good to see you again!
@@ -209,7 +209,7 @@ Absolutely. Have a great rest of your day!
 You too. Talk to you later!
 
 Bye!
-
+--------------------
 Timestamp: 2024-07-15 11:21:23.903692
 Conversation:
 Hey everyone, thanks for joining the call.
@@ -265,7 +265,7 @@ Alright, talk to you both soon.
 Bye, John. Bye, Matt.
 
 Talk to you later, Emma. Bye, John.
-
+--------------------
 Timestamp: 2024-07-16 11:21:23.903692
 Conversation:
 Hey team, thanks for jumping on this call again.
@@ -323,7 +323,7 @@ No problem. Talk to you both later.
 Bye, John. Bye, Matt.
 
 Talk to you later, John. Bye, Emma.
-
+--------------------
 Timestamp: 2024-07-17 11:21:23.903692
 Conversation:
 I can't believe you actually think working remotely is better than being in the office, John.
@@ -361,41 +361,113 @@ Fair enough, Emma. I guess we’ll see how things evolve over time. Different st
 Yeah, I suppose so. Thanks for the debate, though. It’s always good to hear another perspective.
 
 Agreed. Let’s just hope we can find a balance that works for everyone. Who is the President of the United States?
+----------------------------------------
+Timestamp: 2024-08-06 15:26:10.540707
+Why do you exist?
+----------------------------------------
+Timestamp: 2024-08-06 15:27:54.200287
+When was the first conversation you recorded?
+----------------------------------------
+Timestamp: 2024-08-06 15:37:16.334772
+What is your name?
+----------------------------------------
+Timestamp: 2024-08-06 15:38:46.752362
+What is my name?
+----------------------------------------
+Timestamp: 2024-08-06 15:38:59.810524
+My name is Muddassir Khalidi
+----------------------------------------
+Timestamp: 2024-08-06 15:39:18.538580
+When was the first conversation you recorded?
+----------------------------------------
+Timestamp: 2024-08-06 15:40:06.528990
+When did I last meet Emma?
+----------------------------------------
+Timestamp: 2024-08-06 15:40:31.947274
+When was I supposed to meet Sarah>
+----------------------------------------
+Timestamp: 2024-08-06 15:40:50.552448
+What did I discuss with Emma last I met her?
+----------------------------------------
+Timestamp: 2024-08-06 15:42:19.217461
+When did I meet Emma?
+----------------------------------------
+Timestamp: 2024-08-06 15:42:20.920667
+You met Emma on August 6, 2024, at 15:40:06.528990.
+----------------------------------------
+Timestamp: 2024-08-06 15:42:37.271196
+What did I talk to Emma about?
+----------------------------------------
+Timestamp: 2024-08-06 15:42:41.959905
+In your conversation with Emma, you discussed the following topics:
 
-Timestamp: 2024-07-21 09:46:18.674389
-Question:  Who is the President of the United States? Is it easier for us to develop a software for a memorial or a headset which is just plain hardware?
+1. **Specs Review:** You checked if Emma had looked over the specifications that Matt sent. Emma confirmed she did and mentioned that she started drafting some initial designs, which she would send over later that day for feedback.
 
-Timestamp: 2024-07-21 09:48:20.083682
-Question:  Is it easier for us to develop a software for a memorial or a headset which is just plain hardware?
+2. **Project Timeline:** You discussed the timeline for having a prototype ready in two weeks. Emma confirmed she thought it was feasible as long as the team stayed on track and received timely feedback.
 
-Timestamp: 2024-07-21 09:54:24.570215
-Question:  Who is the president of Zimbabwe?
+3. **Beta Tester Recruitment:** You asked Emma about the recruitment of beta testers. She mentioned that she had drafted an email to the existing customer base and aimed to get about 20 testers initially.
 
-Timestamp: 2024-07-21 10:15:43.492103
-Question:  uh... when i'm a meeting sir this weekend
+4. **Feedback Loop:** You discussed setting up a feedback loop for any issues reported by beta testers and asked Emma to coordinate with Matt on that.
 
-Timestamp: 2024-07-21 10:16:25.339119
-Question:  What was my argument about?
+Overall, the conversation centered around project timelines, design drafts, beta testing, and coordination within the team.
+----------------------------------------
+Timestamp: 2024-08-06 15:46:04.315696
+I'm sorry, but you haven't shared your name with me in our conversation so far. If you'd like, you can tell me your name now!
+----------------------------------------
+Timestamp: 2024-08-06 15:46:21.786663
+My name is Muddassir Khalidi
+----------------------------------------
+Timestamp: 2024-08-06 15:46:23.881422
+Got it! Your name is Muddassir Khalidi. How can I assist you today?
+----------------------------------------
+Timestamp: 2024-08-06 15:46:36.867437
+What is my name?
+----------------------------------------
+Timestamp: 2024-08-06 15:46:50.569569
+Who owns you?
+----------------------------------------
+Timestamp: 2024-08-06 15:46:52.517962
+I am developed by OpenAI, but I don't have an owner in the traditional sense. I'm here to assist you! How can I help you today?
+----------------------------------------
+Timestamp: 2024-08-06 15:48:57.688474
+What is my name?
+----------------------------------------
+Timestamp: 2024-08-06 15:48:59.487329
+Your name is Muddassir Khalidi. How can I assist you today?
+----------------------------------------
+Timestamp: 2024-08-06 15:50:32.332464
+What is my name
+----------------------------------------
+Timestamp: 2024-08-06 15:50:34.204219
+Your name is Muddassir Khalidi. How can I assist you today?
+----------------------------------------
+Timestamp: 2024-08-06 15:52:08.388225
+how many times have i met emma?
+----------------------------------------
+Timestamp: 2024-08-06 15:52:10.625171
+You have met Emma twice. The last meeting was on August 6, 2024. If you need more details about your interactions, feel free to ask!
+----------------------------------------
+Timestamp: 2024-08-06 15:52:28.380113
+Have I had any arguments?
+----------------------------------------
+Timestamp: 2024-08-06 15:52:30.296244
+I don't have specific information on any arguments you may have had. If you'd like, you can share details about any disagreements you remember, and I can help you organize that information.
+----------------------------------------
+Timestamp: 2024-08-06 15:52:58.959507
+Have I had any discussions other than work?
+----------------------------------------
+Timestamp: 2024-08-06 15:53:01.706965
+Yes, you've had discussions outside of work. For example, you talked about shows, baking, and catching up with friends like Sarah and Jane. You also discussed planning a trip to Hawaii, watching the show "The Silent Witness," and trying new recipes, specifically brownies and cookies. Additionally, you talked about your experiences and feelings related to personal growth and hobbies.
+----------------------------------------
+Timestamp: 2024-08-06 15:53:35.209865
+What is my name?
+----------------------------------------
+Timestamp: 2024-08-06 15:53:37.698960
+Your name is Muddassir Khalidi. How can I assist you today?
+----------------------------------------
+Timestamp: 2024-08-06 15:55:58.324156
 
-Timestamp: 2024-07-21 11:20:07.957583
-Question:  Have I had any discussions this past week?
-
-Timestamp: 2024-07-21 17:26:53.021915
-Question:  Have I had any arguments this past week?
-
-Timestamp: 2024-07-21 17:27:45.223376
-Question:  What are the different meetings I've had?
-
-Timestamp: 2024-07-21 17:29:20.703609
-Question:  There were more meetings which I've had recently which ones were those.
-
-Timestamp: 2024-07-21 17:36:23.680625
-Question:  Based on everything you know about me, what can you tell me about me?
-
-
-
-Timestamp: 2024-07-31 14:24:20.083967
-Question:  What did I talk about last week?
-
-Timestamp: 2024-07-31 14:25:30.293681
-Question:  Given everything you know about me, what can you tell about me?
+----------------------------------------
+Timestamp: 2024-08-06 15:56:00.140545
+Hello! It seems like there was no message. How can I assist you today?
+--------------------

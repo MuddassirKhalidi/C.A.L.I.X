@@ -1,9 +1,9 @@
 python-dotenv
-playsound2
 openai==1.35.14
 openai-whisper
 pyaudio
 wave
 numpy
-transformers
-tiktoken
+sounddevice
+soundfile
+faiss-cpu
