@@ -8,7 +8,6 @@ import soundfile as sf
 import pyaudio
 import wave
 import numpy as np
-import whisper
 import warnings
 from datetime import datetime
 
