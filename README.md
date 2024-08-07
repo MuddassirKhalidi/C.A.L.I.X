@@ -39,7 +39,6 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
    4. Edit the `.env` File:
       ```
       OPENAI_API_KEY=your-openai-api-key
-      PINECONE_API_KEY=your-pinecone-api-key
       ```
    5. Save and Exit:
       - To save the changes, press Ctrl + O (write out), then press Enter.
@@ -86,25 +85,22 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 
 ### Functions
 
-- **get_OPENAI_API():** Loads the OpenAI API key from environment variables.
-- **list_audio_devices():** Lists available audio input devices.
-- **get_device_index_by_name(name):** Finds the index of an audio device by its name.
-- **getAudio():** Records audio until a period of silence is detected and saves it to a file.
-- **create_metadata():** Creates metadata for sentences with a sliding window approach.
-- **get_PINECONE_API():** Initializes connection to Pinecone API and returns the index.
-- **upsert_vectors():** Upserts vectors into Pinecone from sentences.
-- **speech_to_text():** Converts recorded audio to text using Whisper model.
-- **process_context():** Processes the context by recording speech, converting it to text, and upserting to Pinecone.
-- **text_to_speech():** Converts text to speech and plays the audio.
-- **write_to_file():** Writes the text to a file.
-- **read_from_file():** Reads text from a file.
-- **play_audio():** Plays an audio file.
-- **get_prompt():** Retrieves the prompt by converting speech to text and finding relevant contexts from Pinecone.
-- **process_prompt():** Processes the prompt by generating a response from the GPT-3.5-turbo model and converting it to speech.
-
+- **list_audio_devices():** Lists all available audio input devices.
+- **get_device_index_by_name(name):** Gets the index of an audio device by its name.
+- **embed_text(text):** Embeds text using OpenAI's text embedding model.
+- **write_to_file(text):** Writes text to a file with a timestamp.
+- **text_to_speech(text):** Converts text to speech and plays the audio.
+- **play_audio(file_path):** Plays an audio file.
+- **speech_to_text():** Converts speech to text using OpenAI's Whisper model.
+- **getAudio(device_name, chunk_size, format, channels, rate, silence_threshold, silence_duration):** Records audio using the specified device.
+- **load_vector_store():** Loads embeddings from a file into the FAISS index.
+- **update_vector_store(new_text):** Updates the FAISS index with new embeddings.
+- **query_vector_store(query, top_k):** Queries the FAISS index for relevant embeddings.
+- **generate_response(query):** Generates a response to a query using OpenAI's GPT-4 model.
+- **get_query():** Captures and processes a query from speech.
+- **listen():** Listens for and processes speech input.
+- **intro():** Plays an introductory audio message.
 
 ## Acknowledgements
 
 - [OpenAI](https://www.openai.com) for providing the powerful GPT-4o-mini and Whisper models.
-- [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/) for the audio handling capabilities.
-- [playsound](https://github.com/TaylorSMarks/playsound) for audio playback functionality.
