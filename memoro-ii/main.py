@@ -7,15 +7,14 @@ import sounddevice as sd
 import soundfile as sf
 import pyaudio
 import wave
-import numpy as np
 import warnings
 from datetime import datetime
+import json
 
 # Load environment variables from .env file
 load_dotenv(dotenv_path=os.path.join(os.getcwd(), '.env'))
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 dimension = 1536  # Dimension of the OpenAI embeddings
-index = faiss.IndexFlatL2(dimension)
 embedding_metadata = []
 
 def list_audio_devices():
@@ -35,15 +34,14 @@ def get_device_index_by_name(name):
     return None
 
 device_list = list_audio_devices()
-devices = []
-for i, name in device_list:
-    devices.append(name)
+devices = [name for i, name in device_list]
+for name in devices:
     print(name)
 
 device = input('Choose a microphone device from the list: ')
 while device not in devices:
     device = input('Choose a valid device: ')
-    
+
 def embed_text(text):
     response = openai.embeddings.create(
         input=text, 
@@ -81,12 +79,12 @@ def speech_to_text():
     warnings.filterwarnings("ignore", category=UserWarning, message="FP16 is not supported on CPU; using FP32 instead")
 
     print('Processing speech...')
-    audio = open(audio_file, "rb")
-    transcription = openai.audio.transcriptions.create(
-    model="whisper-1", 
-    file=audio,
-    response_format="text"
-    )
+    with open(audio_file, "rb") as audio:
+        transcription = openai.audio.transcriptions.create(
+            model="whisper-1", 
+            file=audio,
+            response_format="text"
+        )
     print(transcription)
     return transcription
 
@@ -169,6 +167,16 @@ def load_vector_store():
     for i, chunk in enumerate(chunks):
         embedding_metadata.append({'id': f'doc-{i}', 'text': chunk})
 
+def save_embedding_metadata():
+    with open('embedding_metadata.json', 'w') as f:
+        json.dump(embedding_metadata, f)
+
+def load_embedding_metadata():
+    global embedding_metadata
+    if os.path.exists('embedding_metadata.json'):
+        with open('embedding_metadata.json', 'r') as f:
+            embedding_metadata = json.load(f)
+
 def update_vector_store(new_text):
     chunks = new_text.split('-'*20)  # Split by lines for simplicity; can use more sophisticated chunking
     
@@ -181,6 +189,7 @@ def update_vector_store(new_text):
     index.add(embeddings_np)
     for i, chunk in enumerate(chunks):
         embedding_metadata.append({'id': f'doc-{len(embedding_metadata)}', 'text': chunk})
+    save_embedding_metadata()
 
 def query_vector_store(query, top_k=50):
     query_embedding = embed_text(query)
@@ -191,16 +200,16 @@ def query_vector_store(query, top_k=50):
 def generate_response(query):
     matches = query_vector_store(query)
     context = " ".join([match['text'] for match in matches])
-    print(context)
     response = openai.chat.completions.create(
-            model='gpt-4o-mini',
+            model='gpt-4',
             messages=[
-                {"role": "system", "content": "Your name is Memoro and you are a memory assistant listening to my conversations."},
+                {"role": "system", "content": "Your name is Memoro and you are a memory assistant listening to my conversations. Your response should be in the same language as the question. If the context is in a different language, translate it to the language of the question."},
                 {"role": "user", "content": context},
                 {"role": "user", "content": query}
             ]
         )
     answer = response.choices[0].message.content
+    update_vector_store(answer)
     write_to_file(answer)
     print(answer)
     text_to_speech(answer)  
@@ -212,6 +221,7 @@ def get_query():
 
 def listen():
     speech = speech_to_text()
+    update_vector_store(speech)
     write_to_file(speech)
     return speech
 
@@ -219,8 +229,27 @@ def intro():
     file_path = os.path.join(os.getcwd(), 'audios','intro_prompt_voice.mp3')
     play_audio(file_path)
 
-print('Loading vector store..')
-load_vector_store()
+
+vector_store = 'memoro.faiss'
+# Check if the FAISS index file exists
+if os.path.exists(vector_store):
+    print("Index file exists.")
+    # Load the index
+    index = faiss.read_index(vector_store)
+    load_embedding_metadata()
+    print("Index loaded successfully.")
+else:
+    print("Index file does not exist.")
+    # Create a new index
+    dimension = 1536  # Example dimension, adjust accordingly
+    index = faiss.IndexFlatL2(dimension)
+    print("New index created.")
+    print('Loading vector store...')
+    load_vector_store()
+    # Save the new index
+    faiss.write_index(index, vector_store)
+    print("New index saved.")
+
 print('Booted')
 intro()
 while True:
@@ -229,25 +258,5 @@ while True:
         update_vector_store(query)
         generate_response(query)
     except KeyboardInterrupt:
-        break
-    
-print('Loading vector store...')
-load_vector_store()
-print('Booted')
-intro()
-
-device_list = list_audio_devices()
-for i, name in device_list:
-    print(name)
-
-device = input('Choose a microphone device from the list: ')
-while device not in [name for _, name in device_list]:
-    device = input('Choose a valid device: ')
-
-while True:
-    try:
-        query = get_query()
-        update_vector_store(query)
-        generate_response(query)
-    except KeyboardInterrupt:
+        faiss.write_index(index, vector_store)
         break
