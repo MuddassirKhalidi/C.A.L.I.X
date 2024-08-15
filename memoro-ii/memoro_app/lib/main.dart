@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _listen() async {
     try {
-      final response = await http.get(
+      final response = await http.post(
         Uri.parse('http://localhost:5000/listen'),
         headers: {'Content-Type': 'application/json'},
       );
