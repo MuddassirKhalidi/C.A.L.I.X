@@ -31,6 +31,7 @@ def listen():
 def stop_listening():
     app.logger.info("Stop Listening endpoint hit")
     recorder.stop_recording()
+    get_conversation()
     return jsonify({'message': 'Recording stopped'})
 
 
@@ -139,7 +140,7 @@ def generate_response(query):
             ]
         )
     answer = response.choices[0].message.content
-    to_write = f'{date.today()}\nAIDA: {answer}'
+    to_write = f'Date: {date.today()}\nAIDA: {answer}'
     update_vector_store(to_write)
     write_to_file(to_write)
     print(answer)
@@ -148,15 +149,16 @@ def generate_response(query):
 
 def get_query():
     query = speech_to_text()
-    to_write = f'{date.today()}\nUser: {query}'
+    to_write = f'Date: {date.today()}\nUser: {query}'
     update_vector_store(to_write)
     write_to_file(to_write)
     return query
 
 def get_conversation():
     speech = speech_to_text()
-    update_vector_store(speech)
-    write_to_file(speech)
+    to_write = f'Date: {date.today()}\n{speech}'
+    update_vector_store(to_write)
+    write_to_file(to_write)
 
 def intro():
     file_path = os.path.join('aida', 'audios','intro.mp3')
