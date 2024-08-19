@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
-import 'package:memoro_app/IntroductionPage.dart';
+import 'package:aida_app/IntroductionPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AIDA());
 }
 
-class MyApp extends StatelessWidget {
+class AIDA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

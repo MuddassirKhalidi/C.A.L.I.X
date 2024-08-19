@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:memoro_app/AskingPage.dart'; // Import the next page
-import 'package:memoro_app/IntroductionPage.dart'; // Import the Introduction page
-import 'package:memoro_app/recordingButton.dart'; // Import your custom recording button
-import 'package:http/http.dart' as http;
+import 'package:aida_app/AskingPage.dart'; // Import the next page
+import 'package:aida_app/IntroductionPage.dart'; // Import the Introduction page
+import 'package:aida_app/recordingButton.dart'; // Import your custom recording button
 
 class RecordingPage extends StatefulWidget {
   @override
@@ -12,34 +11,11 @@ class RecordingPage extends StatefulWidget {
 class _RecordingPageState extends State<RecordingPage> {
   bool _isRecording = false;
 
-  Future<void> startRecording() async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/listen'),
-    );
-
-    if (response.statusCode == 200) {
-      print('Recording started');
-    } else {
-      print('Failed to start recording');
-    }
-  }
-
-  Future<void> stopRecording() async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/stop_listening'),
-    );
-
-    if (response.statusCode == 200) {
-      print('Recording stopped');
-    } else {
-      print('Failed to stop recording');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Center(
           child: Text(
             "Record conversation",
@@ -51,8 +27,7 @@ class _RecordingPageState extends State<RecordingPage> {
             ),
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 0, // Remove shadow from AppBar
         leading: IconButton(
           icon: Icon(Icons.menu, color: Color(0xFF6A0DAD)),
           onPressed: () {
@@ -63,7 +38,7 @@ class _RecordingPageState extends State<RecordingPage> {
           },
         ),
       ),
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true, // Extend body behind AppBar
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -78,23 +53,19 @@ class _RecordingPageState extends State<RecordingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(),
+            Spacer(), // Push the recording button to the center
             RecordingButton(
               isRecording: _isRecording,
-              onTap: () async {
-                if (_isRecording) {
-                  await stopRecording();
-                } else {
-                  await startRecording();
-                }
+              onTap: () {
                 setState(() {
                   _isRecording = !_isRecording;
                 });
               },
             ),
-            Spacer(),
+            Spacer(), // Push the navigation button to the bottom
             Padding(
-              padding: const EdgeInsets.only(bottom: 50.0),
+              padding:
+                  const EdgeInsets.only(bottom: 50.0), // Add padding if needed
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(

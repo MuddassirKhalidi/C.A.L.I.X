@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:memoro_app/AskingButton.dart';
-import 'package:memoro_app/recordingButton.dart';
+import 'package:aida_app/AskingButton.dart';
+import 'package:aida_app/recordingButton.dart';
 
 class ButtonsPage extends StatefulWidget {
   @override

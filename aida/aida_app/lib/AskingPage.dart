@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:memoro_app/RecordingPage.dart'; // Import the next page
+import 'package:aida_app/IntroductionPage.dart';
+import 'package:aida_app/RecordingPage.dart';
+import 'package:aida_app/askingButton.dart'; // Import your custom asking button
 
-class IntroductionPage extends StatefulWidget {
+class AskingPage extends StatefulWidget {
   @override
-  _IntroductionPageState createState() => _IntroductionPageState();
+  _AskingPageState createState() => _AskingPageState();
 }
 
-class _IntroductionPageState extends State<IntroductionPage> {  
+class _AskingPageState extends State<AskingPage> {
+  bool _isAsking = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
           child: Text(
-            "Welcome to AIDA",
+            "Asking",
             style: TextStyle(
               fontSize: 24,
               color: const Color.fromARGB(255, 97, 1, 114),
@@ -23,10 +27,18 @@ class _IntroductionPageState extends State<IntroductionPage> {
           ),
         ),
         backgroundColor: Colors.white,
-        elevation: 0, // Remove AppBar shadow
-        automaticallyImplyLeading: false, // This removes the back arrow
+        elevation: 0, // Removes the shadow
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Color(0xFF6A0DAD)),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => IntroductionPage()),
+            );
+          },
+        ),
       ),
-      extendBodyBehindAppBar: true, // Extend the body behind the AppBar
+      extendBodyBehindAppBar: true, // Extends the gradient behind the AppBar
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -38,31 +50,23 @@ class _IntroductionPageState extends State<IntroductionPage> {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Welcome to AIDA!",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Color.fromARGB(255, 203, 197, 208),
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Click the button below to start using the app.",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Color.fromARGB(255, 203, 197, 208),
-                  fontFamily: 'OpenSans',
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 50),
-              ElevatedButton(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Spacer(), // Pushes the AskingButton to the center
+            AskingButton(
+              isAsking: _isAsking,
+              onTap: () {
+                setState(() {
+                  _isAsking = !_isAsking;
+                });
+              },
+            ),
+            Spacer(), // Pushes the ElevatedButton to the bottom
+            Padding(
+              padding: const EdgeInsets.only(
+                  bottom: 50.0), // Optional: Add padding if needed
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -70,14 +74,13 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   );
                 },
                 child: Text(
-                  "Get Started",
+                  "Recording Page",
                   style: TextStyle(
                     color: Color.fromARGB(255, 203, 197, 208),
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(
-                      255, 171, 60, 255), // Button background color
+                  backgroundColor: Color.fromARGB(255, 171, 60, 255),
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   textStyle: TextStyle(
                     fontSize: 20,
@@ -86,8 +89,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

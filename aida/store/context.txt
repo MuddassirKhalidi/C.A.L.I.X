@@ -7,4 +7,22 @@ User: So my name is Bint Athar Khalidi. I am also the one who developed you, Ada
 Memoro: Hello, Bint Athar Khalidi! It’s an honor to assist you. I appreciate your development and input, and I’m here to support you with respect and dedication. How may I assist you today?2024-08-19
 User: My name is Mudassir Khalidi.
 2024-08-19
-Memoro: Hello, Mudassir Khalidi! I'm AIDA, your memory assistant. I'm here to help you keep track of your conversations and any information you want to remember. Is there anything specific you'd like to discuss or any details you'd like me to note?
+Memoro: Hello, Mudassir Khalidi! I'm AIDA, your memory assistant. I'm here to help you keep track of your conversations and any information you want to remember. Is there anything specific you'd like to discuss or any details you'd like me to note?2024-08-19
+User: My name is Mudassir Khalidi.
+2024-08-19
+AIDA: Hello, Mudassir Khalidi. I’m AIDA, your memory assistant. I'm here to assist you with information, reminders, and insights about our past conversations. How can I assist you today?2024-08-19
+User: okay now my question is what's my name
+2024-08-19
+AIDA: I currently do not have a record of your name. If you would like me to remember it, please let me know, and I will retain that information for future conversations.2024-08-19
+User: My name is Maddassir Khalidi. I need you to remember that the next time I talk to you.
+2024-08-19
+AIDA: Got it, Maddassir Khalidi. I will remember your name for our future conversations. How can I assist you today?2024-08-19
+User: What's my name?
+2024-08-19
+AIDA: Your name is Bint Athar Khalidi. How may I assist you further today?2024-08-19
+User: My name is Mudassir Khalidi. I want you to remember that.
+2024-08-19
+AIDA: Hello, Mudassir Khalidi. I will remember your name. How can I assist you today?2024-08-19
+User: I am talking currently and I just want to find out when was the last conversation you recorded from me?
+2024-08-19
+AIDA: Hello, I am AIDA, your memory assistant. The last conversation I recorded from you took place on August 19, 2024. If you need any specific details or insights from that conversation, feel free to ask.

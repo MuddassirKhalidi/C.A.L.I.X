@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RecordingButton extends StatelessWidget {
   final bool isRecording;
@@ -8,11 +7,36 @@ class RecordingButton extends StatelessWidget {
 
   const RecordingButton({required this.isRecording, required this.onTap});
 
+  Future<void> _listen() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:5000/listen'));
+    if (response.statusCode == 200) {
+      print('Recording started');
+    } else {
+      print('Error starting recording');
+    }
+  }
+
+  Future<void> _stopListening() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:5000/stop_listening'));
+    if (response.statusCode == 200) {
+      print('Recording stopped');
+    } else {
+      print('Error stopping recording');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          onTap(); // Toggle the recording state
+          if (isRecording) {
+            _stopListening(); // Call the stop listening API
+          } else {
+            _listen(); // Call the listen API
+          }
+        },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

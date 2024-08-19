@@ -16,7 +16,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load environment variables from .env file
-load_dotenv(dotenv_path=os.path.join('memoro-ii', '.env'))
+load_dotenv(dotenv_path=os.path.join('aida', '.env'))
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 dimension = 1536  # Dimension of the OpenAI embeddings
 embedding_metadata = []
@@ -39,7 +39,7 @@ def generate_response_route():
     recorder.stop_recording()
     query = get_query()
     response = generate_response(query)
-    return jsonify({'response': response})
+    return jsonify({'response': response, 'status': 'completed'})  # Indicate completion
 
 def embed_text(text):
     response = openai.embeddings.create(
@@ -49,7 +49,7 @@ def embed_text(text):
     return response.data[0].embedding
 
 def write_to_file(text):
-    with open(os.path.join('memoro-ii', 'store', 'context.txt'), 'a') as file:
+    with open(os.path.join('aida', 'store', 'context.txt'), 'a') as file:
         file.write(text)
     return 
 
@@ -59,7 +59,7 @@ def text_to_speech(text):
         voice="onyx",
         input=text
     )
-    response_path = os.path.join('memoro-ii','audios', 'response_voice.mp3')  # Contains the audio you hear when Memoro responds
+    response_path = os.path.join('aida','audios', 'response_voice.mp3')  # Contains the audio you hear when Memoro responds
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     response.stream_to_file(response_path)
     play_audio(response_path)
@@ -71,7 +71,7 @@ def play_audio(file_path):
 
 def speech_to_text():
     warnings.filterwarnings("ignore", category=UserWarning, message="FP16 is not supported on CPU; using FP32 instead")
-    with open(os.path.join('memoro-ii', 'audios', 'recorded_speech.wav'), "rb") as audio:
+    with open(os.path.join('aida', 'audios', 'recorded_speech.wav'), "rb") as audio:
         transcription = openai.audio.transcriptions.create(
             model="whisper-1", 
             file=audio,
@@ -82,7 +82,7 @@ def speech_to_text():
     return transcription
 
 def load_vector_store(index):
-    with open(os.path.join('memoro-ii','store','context.txt'), 'r') as file:
+    with open(os.path.join('aida','store','context.txt'), 'r') as file:
         chunks = file.read().split('-'*20)  # Split by lines for simplicity; can use more sophisticated chunking
     
     embeddings = []
@@ -97,12 +97,12 @@ def load_vector_store(index):
         embedding_metadata.append({'id': f'doc-{i}', 'text': chunk})
 
 def save_embedding_metadata():
-    with open(os.path.join('memoro-ii','store','embedding_metadata.json'), 'w') as f:
+    with open(os.path.join('aida','store','embedding_metadata.json'), 'w') as f:
         json.dump(embedding_metadata, f)
 
 def load_embedding_metadata():
     global embedding_metadata
-    with open(os.path.join('memoro-ii','store','embedding_metadata.json'), 'r') as f:
+    with open(os.path.join('aida','store','embedding_metadata.json'), 'r') as f:
         embedding_metadata = json.load(f)
 
 def update_vector_store(new_text):
@@ -139,7 +139,7 @@ def generate_response(query):
             ]
         )
     answer = response.choices[0].message.content
-    to_write = f'{date.today()}\nMemoro: {answer}'
+    to_write = f'{date.today()}\nAIDA: {answer}'
     update_vector_store(to_write)
     write_to_file(to_write)
     print(answer)
@@ -159,12 +159,12 @@ def get_conversation():
     write_to_file(speech)
 
 def intro():
-    file_path = os.path.join('memoro-ii', 'audios','intro.mp3')
+    file_path = os.path.join('aida', 'audios','intro.mp3')
     play_audio(file_path)
 
 def init_vector_store():
-    vector_store = os.path.join('memoro-ii','store','memoro.faiss')
-    metadata_file = os.path.join('memoro-ii','store','embedding_metadata.json')
+    vector_store = os.path.join('aida','store','aida.faiss')
+    metadata_file = os.path.join('aida','store','embedding_metadata.json')
 
     # Check if the FAISS index file exists
     if os.path.exists(vector_store):
