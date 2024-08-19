@@ -1,7 +1,7 @@
-# Memoro II - Your Memory Assistant Redefined
+# AIDA - Your Memory Assistant Redefined
 
-Memoro II is the brainchild of Memoro, a powerful memory assistant designed to listen to conversations, transcribe them, and provide contextual answers based on previously stored data. 
-Memoro II is being developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) at Prince Sultan University (PSU) with the aim of furthering the efforts of Memoro. Utilizing OpenAI's GPT-4o-mini model, Memoro II can retrieve relevant information and assist users by answering queries accurately.
+AUDA is the brainchild of Memoro, a powerful memory assistant designed to listen to conversations, transcribe them, and provide contextual answers based on previously stored data. 
+AIDA is being developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) at Prince Sultan University (PSU) with the aim of furthering the efforts of Memoro. Utilizing OpenAI's GPT-4o-mini model, AIDA can retrieve relevant information and assist users by answering queries accurately.
 
 ## Features
 
@@ -22,8 +22,8 @@ Memoro II is being developed at the Artificial Intelligence and Data Analytics L
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/MuddassirKhalidi/MEMORO---II.git
-   cd MEMORO---II
+   git clone https://github.com/MuddassirKhalidi/AIDA.git
+   cd AIDA
    ```
 
 2. **Install dependencies:**
