@@ -49,7 +49,7 @@ class AudioRecorder:
         self.stream.start_stream()
 
     def get_recorded_audio(self):
-        output_filename = os.path.join('aida','audios','recorded_speech.wav')
+        output_filename = os.path.join('audios','recorded_speech.wav')
         try:
             with wave.open(output_filename, 'wb') as wf:
                 wf.setnchannels(self.channels)
