@@ -3,13 +3,14 @@
 AIDA is a memory assistant that listens to conversations, processes the speech into text, stores the data for future reference, and generates responses based on historical data. The system uses OpenAI's APIs for transcription, text generation, and speech synthesis. It is built with Python and Flask for backend services, and a local vector store using FAISS for efficient query retrieval.
 
 ## Table of Contents
-- [Project Structure](#Project Structure)
+- [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [How It Works](#how-it-works)
 - [API Endpoints](#api-endpoints)
 - [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
 
 ## Project Structure
 - `app.py`: Main Flask application that handles API endpoints.
@@ -115,4 +116,3 @@ AIDA was developed at the Artificial Intelligence and Data Analytics Lab (AIDA L
 
 ## Acknowledgments
 - [Professor Tanzila Saba](https://www.linkedin.com/in/prof-tanzila-saba-6195621a/) for her kind guidance and supervision of the project.
-- [OpenAI](https://www.openai.com) for providing the powerful GPT-4o-mini and Whisper models.
