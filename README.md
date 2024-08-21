@@ -1,29 +1,53 @@
-# AIDA - Your Memory Assistant Redefined
+# AIDA - Audio Interactive Digital Assistant
 
-AUDA is the brainchild of Memoro, a powerful memory assistant designed to listen to conversations, transcribe them, and provide contextual answers based on previously stored data. 
-AIDA is being developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) at Prince Sultan University (PSU) with the aim of furthering the efforts of Memoro. Utilizing OpenAI's GPT-4o-mini model, AIDA can retrieve relevant information and assist users by answering queries accurately.
+AIDA is a memory assistant that listens to conversations, processes the speech into text, stores the data for future reference, and generates responses based on historical data. The system uses OpenAI's APIs for transcription, text generation, and speech synthesis. It is built with Python and Flask for backend services, and a local vector store using FAISS for efficient query retrieval.
 
-## Features
+## Table of Contents
+- [Project Structure](#project-structure)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [API Endpoints](#api-endpoints)
+- [Credits](#credits)
 
-- **Audio Recording:** Records audio using the default microphone or a specified audio input device.
-- **Speech-to-Text:** Converts recorded audio to text using OpenAI's Whisper model.
-- **Contextual Search:** Retrieves relevant information from short and long term buffers.
-- **Text-to-Speech:** Converts text responses back to speech for a seamless user experience.
+## Project Structure
+
+├── app.py
+├── Audio_Recorder.py
+├── aida.py
+├── memory.py
+├── requirements.txt
+└── store/
+├── aida.index
+├── context.txt
+└── metadata.pkl
+
+
+- `app.py`: Main Flask application that handles API endpoints.
+- `Audio_Recorder.py`: Handles audio recording and detection of silence to automatically stop recording.
+- `aida.py`: Manages transcription, response generation, and text-to-speech operations.
+- `memory.py`: Implements the FAISS-based vector store for efficient retrieval of past conversations.
+- `store/`: Directory containing the FAISS index and metadata.
+
+## Requirements
+
+- Python 3.7+
+- Flask
+- PyAudio
+- NumPy
+- OpenAI Python client
+- SoundFile and SoundDevice
+- FAISS
 
 ## Installation
 
-### Prerequisites
+1. Clone the repository:
 
-- Python 3.7 or later
-- `pip` package manager
+   ```bash
+   git clone https://github.com/yourusername/aida.git
+   cd aida
 
-### Steps
-
-1. **Clone the repository:**
-
-   ```
-   git clone https://github.com/MuddassirKhalidi/AIDA.git
-   cd AIDA
    ```
 
 2. **Install dependencies:**
@@ -36,16 +60,17 @@ AIDA is being developed at the Artificial Intelligence and Data Analytics Lab (A
    2. Open the `.env` file with `nano`:
 
       `nano .env`
-   4. Edit the `.env` File:
+4. **Edit the `.env` File:**
       ```
       OPENAI_API_KEY=your-openai-api-key
       ```
-   5. Save and Exit:
+5. **Save and Exit:**
       - To save the changes, press Ctrl + O (write out), then press Enter.
       - To exit, press Ctrl + X.
 
 ## Usage
-### Setting Memoro Up
+
+### Setting AIDA Up
 
 **`FFmpeg` Installation**
 
@@ -81,26 +106,25 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 
 `sudo apt install ffmpeg`
 
-## Code Overview
+### Running the app
+1. **Run the Flask app**: `python app.py`
+2. The app will be available at `http://127.0.0.1:5000/`
+3. Use the API Endpoints to interact with AIDA
 
-### Functions
+## API Endpoints
+- `/listen` (GET): Starts recording audio. Returns a message indicating that recording has started.
+- `/stop` (GET): Stops recording audio, processes the speech, and stores the conversation. Returns a message indicating that recording has stopped.
+- `/respond` (GET): Stops recording, processes the speech, retrieves relevant past conversations, generates a response, and returns the processed query and response.
 
-- **list_audio_devices():** Lists all available audio input devices.
-- **get_device_index_by_name(name):** Gets the index of an audio device by its name.
-- **embed_text(text):** Embeds text using OpenAI's text embedding model.
-- **write_to_file(text):** Writes text to a file with a timestamp.
-- **text_to_speech(text):** Converts text to speech and plays the audio.
-- **play_audio(file_path):** Plays an audio file.
-- **speech_to_text():** Converts speech to text using OpenAI's Whisper model.
-- **getAudio(device_name, chunk_size, format, channels, rate, silence_threshold, silence_duration):** Records audio using the specified device.
-- **load_vector_store():** Loads embeddings from a file into the FAISS index.
-- **update_vector_store(new_text):** Updates the FAISS index with new embeddings.
-- **query_vector_store(query, top_k):** Queries the FAISS index for relevant embeddings.
-- **generate_response(query):** Generates a response to a query using OpenAI's GPT-4 model.
-- **get_query():** Captures and processes a query from speech.
-- **listen():** Listens for and processes speech input.
-- **intro():** Plays an introductory audio message.
+## Credits
+AIDA was developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) by:
+- [Muddassir Khalidi](https://www.linkedin.com/in/muddassir-khalidi)
+- [Zainab Mariya](https://www.linkedin.com/in/zainab-mariya-mohiuddin-629a20205/)
+- [Saeed Lababidi](https://www.linkedin.com/in/saeed-lababidi-32554614a/)
+- [Abdulrahman Mamdouh](https://www.linkedin.com/in/abdulrhman-mamdoh-soliman-2342372ba/)
+- [Arwa Bawazir](https://www.linkedin.com/in/arwa-bawazir-5113b2276/)
+- [Asma Khan](https://www.linkedin.com/in/asma-vaheed-khan-035b28291/)
 
-## Acknowledgements
-
+## Acknowledgments
+- [Professor Tanzila Saba](https://www.linkedin.com/in/prof-tanzila-saba-6195621a/) for her kind guidance and supervision of the project.
 - [OpenAI](https://www.openai.com) for providing the powerful GPT-4o-mini and Whisper models.
