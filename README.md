@@ -1,4 +1,4 @@
-# AIDA - Audio Interactive Digital Assistant
+# AIDA - Your Conversational Memory Assistant
 
 AIDA is a memory assistant that listens to conversations, processes the speech into text, stores the data for future reference, and generates responses based on historical data. The system uses OpenAI's APIs for transcription, text generation, and speech synthesis. It is built with Python and Flask for backend services, and a local vector store using FAISS for efficient query retrieval.
 
