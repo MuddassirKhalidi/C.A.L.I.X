@@ -34,8 +34,8 @@ AIDA is a memory assistant that listens to conversations, processes the speech i
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/aida.git
-   cd aida
+   git clone https://github.com/yourusername/AIDA.git
+   cd AIDA
 
    ```
 
