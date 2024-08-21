@@ -4,10 +4,12 @@ import 'recording_page.dart';
 import 'asking_page.dart';
 
 void main() {
-  runApp(AIDA());
+  runApp(const AIDA());
 }
 
 class AIDA extends StatelessWidget {
+  const AIDA({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,12 +18,14 @@ class AIDA extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -37,7 +41,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     _pages = [
-      HomePage(),
+      const HomePage(),
       RecordingPage(
         onRecordingStateChanged: (isRecording) {
           setState(() {
@@ -73,7 +77,7 @@ class _MainPageState extends State<MainPage> {
                 : _selectedIndex == 1
                     ? "Record Conversation"
                     : "Asking",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               color: Color(0xFF6A0DAD),
               fontFamily: 'OpenSans',
@@ -104,7 +108,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFFAB3CFF),
+        selectedItemColor: const Color(0xFFAB3CFF),
         onTap: _onItemTapped,
         backgroundColor:
             _isRecording || _isAsking ? Colors.grey[300] : Colors.white,

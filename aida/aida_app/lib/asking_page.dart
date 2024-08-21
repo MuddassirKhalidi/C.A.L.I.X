@@ -4,7 +4,7 @@ import 'asking_button.dart';
 class AskingPage extends StatefulWidget {
   final Function(bool) onAskingStateChanged;
 
-  AskingPage({required this.onAskingStateChanged});
+  const AskingPage({super.key, required this.onAskingStateChanged});
 
   @override
   _AskingPageState createState() => _AskingPageState();
@@ -23,7 +23,7 @@ class _AskingPageState extends State<AskingPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Color(0xFF000000),

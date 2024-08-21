@@ -43,7 +43,7 @@ class VectorStore:
         self.metadata.append({'text': text})
         self.save_index()
 
-    def query_vector_store(self, query, top_k=5):
+    def query_vector_store(self, query, top_k=10):
         """Retrieve the most relevant texts from the vector store based on the query."""
         query_vector = self.get_openai_embedding(query)
         distances, indices = self.index.search(np.array([query_vector]), top_k)

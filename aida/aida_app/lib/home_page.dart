@@ -1,10 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -31,17 +32,17 @@ class _HomePageState extends State<HomePage> {
 
     _loadName();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       _startSentenceSwitch();
     });
   }
 
   void _startSentenceSwitch() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 5), (timer) {
       int currentPage = _pageController.page!.toInt();
       _pageController.animateToPage(
         currentPage + 1,
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     });
@@ -87,7 +88,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color(0xFF000000),
@@ -100,14 +101,14 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
               child: Column(
                 children: [
                   TextField(
                     controller: _nameController,
                     decoration: InputDecoration(
                       labelText: 'Enter your name',
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         color: Colors.white,
                       ),
                       filled: true,
@@ -117,17 +118,17 @@ class _HomePageState extends State<HomePage> {
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: _saveName,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF27B05C),
+                      backgroundColor: const Color(0xFF27B05C),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Save Name',
                       style: TextStyle(
                         color: Colors.white,
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                       return Center(
                         child: Text(
                           _sentences[sentenceIndex],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 24,
                             color: Color(0xFFCBC5D0),
                             fontFamily: 'OpenSans',
@@ -168,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                       child: SmoothPageIndicator(
                         controller: _pageController,
                         count: _sentences.length,
-                        effect: WormEffect(
+                        effect: const WormEffect(
                           activeDotColor: Colors.white,
                           dotColor: Colors.grey,
                           dotHeight: 8.0,
@@ -181,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 40.0),
+            const SizedBox(height: 40.0),
           ],
         ),
       ),

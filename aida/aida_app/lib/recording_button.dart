@@ -5,7 +5,7 @@ class RecordingButton extends StatelessWidget {
   final bool isRecording;
   final VoidCallback onTap;
 
-  const RecordingButton({required this.isRecording, required this.onTap});
+  const RecordingButton({super.key, required this.isRecording, required this.onTap});
 
   Future<void> _listen() async {
     final response = await http.get(Uri.parse('http://127.0.0.1:5000/listen'));
@@ -37,8 +37,8 @@ class RecordingButton extends StatelessWidget {
         }
       },
       style: ElevatedButton.styleFrom(
-        shape: CircleBorder(),
-        padding: EdgeInsets.all(20),
+        shape: const CircleBorder(),
+        padding: const EdgeInsets.all(20),
         backgroundColor:
             isRecording ? Colors.red : const Color.fromARGB(255, 42, 181, 49),
       ),

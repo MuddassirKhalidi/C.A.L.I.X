@@ -11,7 +11,6 @@ CORS(app)
 
 # Load environment variables from .env file
 load_dotenv(dotenv_path=os.path.join('.env'))
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 @app.route('/listen', methods=['GET'])
 def listen():

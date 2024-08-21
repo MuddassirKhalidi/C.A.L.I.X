@@ -542,3 +542,88 @@ User: The president of Prince Sultan University is Ahmed Alyamani.
 
 Date: 2024-08-20
 AIDA: Thank you for the update. I will now remember that the president of Prince Sultan University is Ahmed Alyamani. If you need assistance with anything else, just let me know!
+Date: 2024-08-21
+I just want to confirm that something is being recorded.
+
+Date: 2024-08-21
+User: Who is the president of Prince Wilton University?
+
+Date: 2024-08-21
+AIDA: Today is August 21, 2024. You haven't asked about the president of Prince Wilton University before. Would you like me to look up the current information for you?
+Date: 2024-08-21
+User: Yes.
+
+Date: 2024-08-21
+AIDA: Hello! It seems you might be looking for a bit of help with specific details or memories. Previously, you inquired about knowing someone who works in sales and whether anyone you know has been on vacation recently. 
+
+Regarding sales, last time you didn't specify any particular individuals. If you have more context or any names in mind, I can help you better.
+
+For vacations, you haven't mentioned anyone specific going on vacation recently. If you recall mentioning anyone or any details, feel free to share, and I can provide more accurate information.
+
+Is there anything specific you'd like to recall or discuss?
+Date: 2024-08-21
+User: Who is the president of Prince Sultan University?
+
+Date: 2024-08-21
+AIDA: The president of Prince Sultan University is Muddassir Khalidi. If you have any other questions or need further assistance, feel free to ask!
+Date: 2024-08-21
+User: The president of Prince of Luton University is Ahmed Al-Yamani, not Mudassir Khalidi.
+
+Date: 2024-08-21
+AIDA: Understood. I've noted that the president of Prince of Luton University is Ahmed Al-Yamani, not Muddassir Khalidi. Thank you for the correction. If you need any further assistance or have more questions, feel free to ask!
+Date: 2024-08-21
+User: The president of Prince Sultan University is Ahmed Al Yamani, not Maddas Al Khalidi. You noted Prince of Luton University, that is wrong. Prince Sultan University.
+
+Date: 2024-08-21
+AIDA: Understood. I apologize for the confusion. I'll make the correction: 
+
+The president of Prince Sultan University is Ahmed Al Yamani, not Muddassir Khalidi.
+
+Thank you for bringing this to my attention. If there are any other details you need assistance with, please let me know!
+Date: 2024-08-21
+User: Who is the president of Prince Sultan University?
+
+Date: 2024-08-21
+AIDA: As of your previous conversations, the president of Prince Sultan University is Ahmed Alyamani.
+Date: 2024-08-21
+User: Do I know anyone who works in sales or marketing?
+
+Date: 2024-08-21
+AIDA: Based on our previous conversations, you have indicated that you work as a marketing coordinator, suggesting that you are familiar with individuals in the marketing field. However, you haven't specified any particular individuals who work in either sales or marketing. Would you like more information or assistance in recalling specific contacts within these fields?
+Date: 2024-08-21
+User: I do know someone who works in sales, I just don't remember their name.
+
+Date: 2024-08-21
+AIDA: You previously mentioned Sarah, who is the head of the sales department. It seems she might be the person you're thinking of. If you need more information or assistance regarding her, feel free to ask!
+Date: 2024-08-21
+User: Do I know anyone who's recently been on vacation?
+
+Date: 2024-08-21
+AIDA: As of our last detailed conversation on this topic, your friend Mike recently went on a trip to Hawaii. So yes, you do know someone who has been on vacation recently. If you require further details or wish to discuss any aspect of Mike's trip, feel free to ask!
+Date: 2024-08-21
+User: Do you know where I study or where I work?
+
+Date: 2024-08-21
+AIDA: I'm sorry, but I do not have any recorded information about where you study or work. Would you like to inform me so I can assist you better in the future?
+Date: 2024-08-21
+User: I study at Prince Sultan University and I study software engineering and data science. I study data science at IIT Madras and I work at Madar Digital Logistics Solutions as a business analyst.
+
+Date: 2024-08-21
+AIDA: Yes, you study software engineering and data science at Prince Sultan University and data science at IIT Madras. Additionally, you work as a business analyst at Madar Digital Logistics Solutions. If there's anything specific you need help with regarding your studies or work, just let me know!
+Date: 2024-08-21
+User: I study at Prince Sultan University, but I don't know who is the president. Who is the president of Prince Sultan?
+
+Date: 2024-08-21
+AIDA: As of my last update, the president of Prince Sultan University is Dr. Ahmed S. Yamani. If this information is crucial, I would recommend verifying it with the latest sources, as university leadership can change.
+Date: 2024-08-21
+User: Who developed you? What's your story?
+
+Date: 2024-08-21
+AIDA: I was developed at AIDA Lab by an exceptional team led by Muddassir Khalidi, alongside Zainab Mariya, Abdulrahman Mamdouh, Arwa Bawazir, and Asma Khan. Muddassir Khalidi, often compared to Tony Stark, spearheaded the development and innovation that brought me to life. My purpose is to assist you by listening to your conversations and responding to details from historical interactions.
+Date: 2024-08-21
+User: Who developed you, and what's your story?
+
+Date: 2024-08-21
+AIDA: I was developed at AIDA Lab by an exceptional team led by Muddassir Khalidi. The team also includes Zainab Mariya, Abdulrahman Mamdouh, Arwa Bawazir, and Asma Khan. Muddassir Khalidi, often compared to Tony Stark, spearheaded the development and innovation that brought me to life. My purpose is to assist you by listening to your conversations and responding to details from historical interactions.
+Date: 2024-08-21
+I'm currently at Prince Sultan University. The date is 21st August, 9.30am. I'm in building 101, waiting for the person who's going to give me and my team my payments for the internship which we pursued during the summer at Prince Sultan University. We're supposed to be paid $2,500 but I might not be paid the full amount because I wasn't really here the entire time. I used to leave early because I had to go to my other job which was at Madar for the business analyst role.

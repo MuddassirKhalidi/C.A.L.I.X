@@ -5,7 +5,7 @@ class AskingButton extends StatelessWidget {
   final bool isAsking;
   final VoidCallback onTap;
 
-  const AskingButton({required this.isAsking, required this.onTap});
+  const AskingButton({super.key, required this.isAsking, required this.onTap});
   Future<void> _listen() async {
     final response = await http.get(Uri.parse('http://127.0.0.1:5000/listen'));
     if (response.statusCode == 200) {
@@ -35,8 +35,8 @@ class AskingButton extends StatelessWidget {
         }
       },
       style: ElevatedButton.styleFrom(
-        shape: CircleBorder(),
-        padding: EdgeInsets.all(20),
+        shape: const CircleBorder(),
+        padding: const EdgeInsets.all(20),
         backgroundColor:
             isAsking ? Colors.red : const Color.fromARGB(255, 42, 181, 49),
       ),

@@ -4,7 +4,7 @@ import 'recording_button.dart';
 class RecordingPage extends StatefulWidget {
   final Function(bool) onRecordingStateChanged;
 
-  RecordingPage({required this.onRecordingStateChanged});
+  const RecordingPage({super.key, required this.onRecordingStateChanged});
 
   @override
   _RecordingPageState createState() => _RecordingPageState();
@@ -23,7 +23,7 @@ class _RecordingPageState extends State<RecordingPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
             Color(0xFF000000),
