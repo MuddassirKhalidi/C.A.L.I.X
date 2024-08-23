@@ -7,8 +7,8 @@ import pickle
 class VectorStore:
     def __init__(self, dim=1536):
         self.dim = dim
-        self.index_file = os.path.join('store', 'aida.index')
-        self.metadata_file = os.path.join('store', 'metadata.pkl')
+        self.index_file = os.path.join('aida','store', 'aida.index')
+        self.metadata_file = os.path.join('aida','store', 'metadata.pkl')
         if os.path.exists(self.index_file) and os.path.exists(self.metadata_file):
             self.load_index()
         else:

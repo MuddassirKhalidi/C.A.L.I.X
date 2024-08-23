@@ -10,12 +10,12 @@ class AIDA:
         self.vector_store = vector_store
 
     def write_to_file(self, text):
-        with open(os.path.join('store', 'context.txt'), 'a') as file:
+        with open(os.path.join('aida','store', 'context.txt'), 'a') as file:
             file.write(text + '\n')
 
     def speech_to_text(self):
         warnings.filterwarnings("ignore", category=UserWarning, message="FP16 is not supported on CPU; using FP32 instead")
-        with open(os.path.join('audios', 'recorded_speech.wav'), "rb") as audio:
+        with open(os.path.join('aida','audios', 'recorded_speech.wav'), "rb") as audio:
             transcription = openai.audio.transcriptions.create(
                 model="whisper-1", 
                 file=audio,
@@ -30,7 +30,7 @@ class AIDA:
             voice="onyx",
             input=text
         )
-        response_path = os.path.join('audios', 'response_voice.mp3')
+        response_path = os.path.join('aida','audios', 'response_voice.mp3')
         warnings.filterwarnings("ignore", category=DeprecationWarning)
         response.stream_to_file(response_path)
         self.play_audio(response_path)
@@ -73,5 +73,5 @@ class AIDA:
         self.write_to_file(to_write)
 
     def intro(self):
-        file_path = os.path.join('audios','intro.mp3')
+        file_path = os.path.join('aida','audios','intro.mp3')
         self.play_audio(file_path)
