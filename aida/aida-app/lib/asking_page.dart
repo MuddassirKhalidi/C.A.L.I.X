@@ -37,7 +37,7 @@ class _AskingPageState extends State<AskingPage> {
             padding: const EdgeInsets.only(
                 top: 80.0), // Adjust the padding as needed
             child: Text(
-              'Asking',
+              'Recall',
               style: GoogleFonts.robotoMono(
                 textStyle: const TextStyle(
                   fontSize: 24,

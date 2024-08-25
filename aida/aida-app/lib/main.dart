@@ -61,13 +61,6 @@ class _MainPageState extends State<MainPage> {
     ];
   }
 
-  void _onItemTapped(int index) {
-    if (_isRecording || _isAsking) return;
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,26 +68,56 @@ class _MainPageState extends State<MainPage> {
         index: _selectedIndex,
         children: _pages,
       ),
-      bottomNavigationBar: MotionTabBar(
-        tabBarColor: const Color(0xFF160239),
-        labels: const ["Home", "Record", "Ask"],
-        initialSelectedTab: "Home",
-        tabIconColor: const Color.fromARGB(255, 219, 197, 255),
-        tabSelectedColor: const Color(0xFFC75DEE),
-        textStyle: GoogleFonts.robotoMono(
-          textStyle: const TextStyle(
-            color: Color.fromARGB(255, 243, 236, 236),
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          if (_isRecording || _isAsking) {
+            // Show a message or perform any action if needed
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Please stop recording or asking before navigating.',
+                  style: GoogleFonts.robotoMono(),
+                ),
+              ),
+            );
+          }
+        },
+        child: AbsorbPointer(
+          absorbing: _isRecording ||
+              _isAsking, // Disable interaction when recording or asking
+          child: MotionTabBar(
+            tabBarColor: const Color(0xFF160239),
+            labels: const ["Home", "Record", "Recall"],
+            initialSelectedTab: "Home",
+            tabIconColor: const Color.fromARGB(255, 219, 197, 255),
+            tabSelectedColor: const Color(0xFFC75DEE),
+            textStyle: GoogleFonts.robotoMono(
+              textStyle: const TextStyle(
+                color: Color.fromARGB(255, 243, 236, 236),
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            icons: const [Icons.home, Icons.mic, Icons.question_answer],
+            onTabItemSelected: (int index) {
+              if (_isRecording || _isAsking) {
+                // Prevent changing tabs while recording or asking
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Please stop recording or asking before navigating.',
+                      style: GoogleFonts.robotoMono(),
+                    ),
+                  ),
+                );
+                return;
+              }
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
           ),
         ),
-        icons: const [Icons.home, Icons.mic, Icons.question_answer],
-        onTabItemSelected: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
       ),
     );
   }

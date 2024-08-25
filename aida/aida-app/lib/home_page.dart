@@ -24,7 +24,8 @@ class _HomePageState extends State<HomePage> {
     _sentences = [
       "Welcome to AIDA!",
       "Your personal voice assistant",
-      "Never miss a moment!",
+      "Record. Recall.",
+      "Never miss a moment!"
     ];
 
     _pageController = PageController(
@@ -114,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                     horizontal: 16.0, vertical: 20.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 65,
                     ),
                     TextField(
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       onPressed: _saveName,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(159, 51, 2, 82),
+                        backgroundColor: const Color.fromARGB(159, 51, 2, 82),
                       ),
                       child: Text(
                         'Save Name',

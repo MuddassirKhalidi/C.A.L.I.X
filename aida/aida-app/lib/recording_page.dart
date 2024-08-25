@@ -37,7 +37,7 @@ class _RecordingPageState extends State<RecordingPage> {
             padding: const EdgeInsets.only(
                 top: 80.0), // Adjust the padding as needed
             child: Text(
-              'Recording',
+              'Record',
               style: GoogleFonts.robotoMono(
                 textStyle: const TextStyle(
                   fontSize: 24,
