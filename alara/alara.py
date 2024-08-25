@@ -73,5 +73,6 @@ class ALARA:
         self.write_to_file(to_write)
 
     def intro(self):
+        # file needs to change 
         file_path = os.path.join('alara','audios','intro.mp3')
         self.play_audio(file_path)
