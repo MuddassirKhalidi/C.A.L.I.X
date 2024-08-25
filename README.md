@@ -109,10 +109,11 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 AIDA was developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) by:
 - [Muddassir Khalidi](https://www.linkedin.com/in/muddassir-khalidi)
 - [Zainab Mariya](https://www.linkedin.com/in/zainab-mariya-mohiuddin-629a20205/)
-- [Saeed Lababidi](https://www.linkedin.com/in/saeed-lababidi-32554614a/)
 - [Abdulrahman Mamdouh](https://www.linkedin.com/in/abdulrhman-mamdoh-soliman-2342372ba/)
 - [Arwa Bawazir](https://www.linkedin.com/in/arwa-bawazir-5113b2276/)
 - [Asma Khan](https://www.linkedin.com/in/asma-vaheed-khan-035b28291/)
+- [Saeed Lababidi](https://www.linkedin.com/in/saeed-lababidi-32554614a/)
+
 
 ## Acknowledgments
 - [Professor Tanzila Saba](https://www.linkedin.com/in/prof-tanzila-saba-6195621a/) for her kind guidance and supervision of the project.
