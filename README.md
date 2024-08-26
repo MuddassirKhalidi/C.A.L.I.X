@@ -1,6 +1,6 @@
-# ALARA - Your Conversational Memory Assistant
+# C.A.L.I.X - Your Conversational Memory Assistant
 
-ALARA (Advanced Language and Retrieval Agent) is a memory assistant that listens to conversations, processes the speech into text, stores the data for future reference, and generates responses based on historical data. The system uses OpenAI's APIs for transcription, text generation, and speech synthesis. It is built with Python and Flask for backend services, and a local vector store using FAISS for efficient query retrieval.
+C.A.L.I.X (Cognitive Archive Learning & Information Expert) is a memory assistant that listens to conversations, processes the speech into text, stores the data for future reference, and generates responses based on historical data. The system uses OpenAI's APIs for transcription, text generation, and speech synthesis. It is built with Python and Flask for backend services, and a local vector store using FAISS for efficient query retrieval.
 
 ## Table of Contents
 - [Project Structure](#project-structure)
@@ -15,7 +15,7 @@ ALARA (Advanced Language and Retrieval Agent) is a memory assistant that listens
 ## Project Structure
 - `app.py`: Main Flask application that handles API endpoints.
 - `Audio_Recorder.py`: Handles audio recording and detection of silence to automatically stop recording.
-- `alara.py`: Manages transcription, response generation, and text-to-speech operations.
+- `calix.py`: Manages transcription, response generation, and text-to-speech operations.
 - `memory.py`: Implements the FAISS-based vector store for efficient retrieval of past conversations.
 - `store/`: Directory containing the FAISS index and metadata.
 
@@ -34,8 +34,8 @@ ALARA (Advanced Language and Retrieval Agent) is a memory assistant that listens
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/ALARA.git
-   cd ALARA
+   git clone https://github.com/yourusername/C.A.L.I.X.git
+   cd C.A.L.I.X
 
    ```
 
@@ -59,7 +59,7 @@ ALARA (Advanced Language and Retrieval Agent) is a memory assistant that listens
 
 ## Usage
 
-### Setting ALARA Up
+### Setting C.A.L.I.X Up
 
 **`FFmpeg` Installation**
 
@@ -98,7 +98,7 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 ### Running the app
 1. **Run the Flask app**: `python app.py`
 2. The app will be available at `http://127.0.0.1:5000/`
-3. Use the API Endpoints to interact with ALARA
+3. Use the API Endpoints to interact with C.A.L.I.X
 
 ## API Endpoints
 - `/listen` (GET): Starts recording audio. Returns a message indicating that recording has started.
@@ -106,9 +106,9 @@ For Ubuntu and other Debian-based distributions, you can install ffmpeg from the
 - `/respond` (GET): Stops recording, processes the speech, retrieves relevant past conversations, generates a response, and returns the processed query and response.
 
 ## Credits
-ALARA was developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) by:
+C.A.L.I.X was developed at the Artificial Intelligence and Data Analytics Lab (AIDA Lab) by:
 - [Muddassir Khalidi](https://www.linkedin.com/in/muddassir-khalidi)
-- [Zainab Mariya](https://www.linkedin.com/in/zainab-mariya-mohiuddin-629a20205/)
+- [Zainab Mariya Mohiuddin](https://www.linkedin.com/in/zainab-mariya-mohiuddin-629a20205/)
 - [Abdulrahman Mamdouh](https://www.linkedin.com/in/abdulrhman-mamdoh-soliman-2342372ba/)
 - [Arwa Bawazir](https://www.linkedin.com/in/arwa-bawazir-5113b2276/)
 - [Asma Khan](https://www.linkedin.com/in/asma-vaheed-khan-035b28291/)
