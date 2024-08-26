@@ -22,8 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _sentences = [
-      "Welcome to ALARA!",
-      "Your personal voice assistant",
+      "ALARA\nYour memory assistant.",
       "Record. Recall.",
       "Never miss a moment!"
     ];
@@ -172,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                             _sentences[sentenceIndex],
                             style: GoogleFonts.robotoMono(
                               textStyle: const TextStyle(
-                                fontSize: 27,
-                                color: Color(0xFFCBC5D0),
+                                fontSize: 30,
+                                color: Color.fromARGB(255, 232, 227, 236),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

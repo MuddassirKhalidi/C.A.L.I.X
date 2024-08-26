@@ -22,18 +22,18 @@ def listen():
 def stop_listening():
     app.logger.info("Stop Listening endpoint hit")
     recorder.stop_recording()
-    aida.get_conversation()
+    alara.get_conversation()
     return jsonify({'message': 'Recording stopped'})
 
 @app.route('/respond', methods=['GET'])
 def generate_response_route():
     recorder.stop_recording()
-    query = aida.get_query()
-    response = aida.generate_response(query)
+    query = alara.get_query()
+    response = alara.generate_response(query)
     return jsonify({'query': query, 'response': response, 'status': 'completed'})
 
 recorder = AudioRecorder()
 store = VectorStore()
-aida = ALARA(store)
+alara = ALARA(store)
 
 app.run(debug=True)
