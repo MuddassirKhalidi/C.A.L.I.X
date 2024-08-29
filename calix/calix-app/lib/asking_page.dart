@@ -40,7 +40,7 @@ class _AskingPageState extends State<AskingPage> {
               'Recall',
               style: GoogleFonts.robotoMono(
                 textStyle: const TextStyle(
-                  fontSize: 24,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 219, 197, 255),
                 ),

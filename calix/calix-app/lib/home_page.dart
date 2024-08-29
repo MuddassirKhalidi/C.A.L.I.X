@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         labelStyle: GoogleFonts.robotoMono(
                           textStyle: const TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 30,
                           ),
                         ),
                         filled: true,
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                           textStyle: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                             _sentences[sentenceIndex],
                             style: GoogleFonts.robotoMono(
                               textStyle: const TextStyle(
-                                fontSize: 30,
+                                fontSize: 45,
                                 color: Color.fromARGB(255, 232, 227, 236),
                                 fontWeight: FontWeight.bold,
                               ),
