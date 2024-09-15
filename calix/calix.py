@@ -4,6 +4,8 @@ import warnings
 from datetime import date
 import soundfile as sf
 import sounddevice as sd
+from ProcessAudio import process_audio
+from memory import VectorStore
 
 class Calix:
     def __init__(self, vector_store):
@@ -67,7 +69,8 @@ class Calix:
         return query
 
     def get_conversation(self):
-        speech = self.speech_to_text()
+        # speech = self.speech_to_text()
+        speech = audio_processor.transcribe()
         to_write = f'Date: {date.today()}\n{speech}'
         self.vector_store.update_vector_store(to_write)
         self.write_to_file(to_write)
@@ -76,3 +79,5 @@ class Calix:
         # file needs to change 
         file_path = os.path.join('calix','audios','intro.mp3')
         self.play_audio(file_path)
+
+audio_processor = process_audio()
