@@ -28,8 +28,11 @@ class process_audio:
     
     def save_chunks(self, chunks):
         chunk_files = []
+        temp_dir = os.path.join('calix', 'audios', 'recorded_speech')
+        if not os.path.exists(temp_dir):
+            os.makedirs(temp_dir)
         for i, chunk in enumerate(chunks):
-            chunk_filename = os.path.join('calix', 'audios', 'recorded_speech', f"speech_part{i}.mp3")
+            chunk_filename = os.path.join(temp_dir, f"speech_part{i}.mp3")
             chunk.export(chunk_filename, format="mp3")
             chunk_files.append(chunk_filename)
         return chunk_files

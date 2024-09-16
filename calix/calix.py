@@ -44,7 +44,7 @@ class Calix:
 
     def generate_response(self, query):
         matches = self.vector_store.query_vector_store(query)
-        context = " ".join([match['text'] for match in matches])
+        context = " ".join(set([match['text'] for match in matches]))
         response = openai.chat.completions.create(
             model='gpt-4o-mini',
             messages=[
