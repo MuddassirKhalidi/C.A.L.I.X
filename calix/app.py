@@ -23,7 +23,7 @@ def stop_listening():
     app.logger.info("Stop Listening endpoint hit")
     recorder.stop_recording()
     calix.get_conversation()
-    return jsonify({'message': 'Recording stopped'})
+    return jsonify({'message': 'Recording stopped', 'status': 'completed'})
 
 @app.route('/respond', methods=['GET'])
 def generate_response_route():
